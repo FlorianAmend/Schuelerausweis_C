@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using Microsoft.Data.Sqlite;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
@@ -13,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Data;
 
 
 // Die Elementvorlage "Leere Seite" wird unter https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x407 dokumentiert.
@@ -26,6 +28,7 @@ namespace Schuelerausweis_C
     {
         DateTime startDate = DateTime.Now;
 
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -35,7 +38,67 @@ namespace Schuelerausweis_C
 
         private void textBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+           
 
+        }
+
+        //Schueler wird in der Datenbank gespeichert
+        void SchSave(object sender, RoutedEventArgs e)
+        {
+            String name = textBox_name.Text;
+            String nachname = textBox_nachname.Text;
+            String aname = textBox_a_name.Text;
+            String anachname = textBox_a_nachname.Text;
+            String gebdat = textBox_gebdat.Text;
+            String kid = textBox_kid.Text;
+            String status = textBox_status.Text;
+
+        }
+
+        //Schüeler wird aus der Datenbank gelöscht
+        void SchDelet(object sender, RoutedEventArgs e)
+        {
+            String name = textBox_name.Text;
+            String nachname = textBox_nachname.Text;
+            String aname = textBox_a_name.Text;
+            String anachname = textBox_a_nachname.Text;
+            String gebdat = textBox_gebdat.Text;
+            String kid = textBox_kid.Text;
+            String status = textBox_status.Text;
+        }
+
+        //Schüler Bild wird dem Schüler in der Datenbank hinzugefügt
+        void SchBildAdd(object sender, RoutedEventArgs e)
+        {
+            String name = textBox_name.Text;
+            String nachname = textBox_nachname.Text;
+            String aname = textBox_a_name.Text;
+            String anachname = textBox_a_nachname.Text;
+            String gebdat = textBox_gebdat.Text;
+            String kid = textBox_kid.Text;
+            String status = textBox_status.Text;
+        }
+        //Bild des Schülers wird aus der Datenbank gelöscht
+        void SchBildDelet(object sender, RoutedEventArgs e)
+        {
+            String name = textBox_name.Text;
+            String nachname = textBox_nachname.Text;
+            String aname = textBox_a_name.Text;
+            String anachname = textBox_a_nachname.Text;
+            String gebdat = textBox_gebdat.Text;
+            String kid = textBox_kid.Text;
+            String status = textBox_status.Text;
+        }
+        void ButtonTest(object sender, RoutedEventArgs e)
+        {
+            
+            textBlock3.Text = textBox_name.Text;
+            textBlock4.Text = "";
+            textBlock5.Text = "";
+            textBlock6.Text = "";
+            textBlock7.Text = "";
+            textBlock8.Text = "";
+            textBlock9.Text = "";
         }
 
         private void button3_Click(object sender, RoutedEventArgs e)
@@ -58,17 +121,18 @@ namespace Schuelerausweis_C
 
             Schueler newSchueler = new Schueler();
             newSchueler.Activities.Add(new Activity()
-            { 
+            {
                 Name = "Florian",
-                Nachname="Amend",
-                AName="Florian",
-                ANachname="Amend",
-                GebDat=startDate.AddDays(2),
-                Einschulung= startDate.AddDays(3),
-                GueltiBis= startDate.AddDays(4),
-                Status="Aktiv", 
-                DueDate = startDate.AddDays(4) 
-            });
+                Nachname = "Amend",
+                AName = "Florian",
+                ANachname = "Amend",
+                GebDat = startDate.AddDays(2),
+                Einschulung = startDate.AddDays(3),
+                GueltiBis = startDate.AddDays(4),
+                Status = "Aktiv",
+                DueDate = startDate.AddDays(4)
+            }); ;
+            Schulers.Add(newSchueler);
 
             cvsProjects.Source = Schulers;
         }
@@ -87,6 +151,7 @@ namespace Schuelerausweis_C
 
     public class Activity
     {
+        public string FullName { get; set; }
         public string Name { get; set; }
         public string Nachname { get; set; }
         public string AName { get; set; }
@@ -97,6 +162,7 @@ namespace Schuelerausweis_C
         public DateTime GueltiBis { get; set; }
         public string Status { get; set; }
         public DateTime DueDate { get; set; }
+
     }
 }
 

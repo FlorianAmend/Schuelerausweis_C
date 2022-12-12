@@ -15,4 +15,19 @@ namespace Schuelerausweis_C
         }
     }
 
+    class Student 
+    {
+        string FullName { get; set; }
+        string Name { get; set; }
+        string Nachname { get; set; }
+        string AName { get; set; }
+        public string ANachname { get; set; }
+        public DateTime GebDat { get; set; }
+        public byte Foto { get; set; }
+        public DateTime Einschulung { get; set; }
+        public DateTime GueltiBis { get; set; }
+        public string Status { get; set; }
+        public DateTime DueDate { get; set; }
+
+    }
 }
